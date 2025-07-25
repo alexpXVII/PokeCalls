@@ -64,6 +64,9 @@ ENCOUNTER_CONDITION_VALUES_ENDPOINT = f"{POKEAPI_BASE_URL}encounter-condition-va
 # Utility (Languages)
 LANGUAGES_ENDPOINT = f"{POKEAPI_BASE_URL}language/"
 
+# Max Pokemon ID
+MAX_POKEMON_ID = 1025
+
 # --- Example Usage in a Wrapper (Illustrative) ---
 # import requests
 # from config import POKEMON_ENDPOINT
