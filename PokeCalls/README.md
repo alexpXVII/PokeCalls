@@ -1,5 +1,8 @@
 # PokeCalls
 
+## Personal Note
+This is a side project to refresh some of my skills while working on something fun. I intend to use it as a demonstration of my knowledge as a full-stack developer.
+
 ## Overview
 PokeCalls is a Python library that simplifies interaction with the [PokeAPI](https://pokeapi.co/). It provides a structured way to fetch Pokémon data, moves, and related resources, and includes helper classes and services for building games or tools using Pokémon data.
 
