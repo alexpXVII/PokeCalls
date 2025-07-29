@@ -7,8 +7,9 @@ PokeCalls is a Python library that simplifies interaction with the [PokeAPI](htt
 - Easy-to-use API client for REST calls
 - Models for Pokémon, moves, and related data
 - Service layer with caching for efficient API usage
-- Example game logic for daily Pokémon guessing
+- Example game logic for daily Pokémon and move guessing
 - Modular and extensible codebase
+- Colorized CLI feedback for guesses
 
 ## Installation
 
@@ -38,15 +39,13 @@ move = MoveService.fetch_move("mega-punch")
 print(move.name, move.power, move.accuracy)
 ```
 
-### Example: Daily Pokémon Game
+### Game Features
 
-```python
-from logic.game import Game
-
-game = Game("Ash")
-result = game.guess_pokemon("pikachu")
-print(result)
-```
+- Guess the daily Pokémon or move.
+- Colorized output:  
+  - **Green**: Match!  
+  - **Yellow**: Lower  
+  - **Red**: Wrong or Higher
 
 ## Running Tests
 
@@ -62,10 +61,10 @@ pytest
 src/
 ├── models/      # Data models for Pokémon, moves, etc.
 ├── services/    # Service layer for API calls and caching
-├── logic/       # Game logic and application code
+├── logic/       # Game logic and comparison utilities
 ├── pokeapi/     # API endpoint wrappers and utilities
 ├── config.py    # Configuration and constants
-└── main.py      # Example entry point
+└── main.py      # CLI entry point
 ```
 
 ## Contributing
