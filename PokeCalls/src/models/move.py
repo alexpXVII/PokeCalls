@@ -1,5 +1,6 @@
 from types import SimpleNamespace
 from typing import List, Optional, Dict, Any
+from models.pokemon import Pokemon
 
 # Example response from https://pokeapi.co/api/v2/move/5/
 # {

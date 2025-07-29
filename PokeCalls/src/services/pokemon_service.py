@@ -1,5 +1,5 @@
 from functools import lru_cache
-from models.Pokemon import Pokemon
+from models.pokemon import Pokemon
 from pokeapi.core import get_pokemon
 
 class PokemonService:

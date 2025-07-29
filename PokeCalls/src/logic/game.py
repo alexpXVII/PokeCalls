@@ -1,10 +1,13 @@
 from datetime import date
 import random
-from typing import Optional, List
+from typing import List, Optional
 
+from config import MAX_POKEMON_ID, MAX_MOVE_ID
 from services.pokemon_service import PokemonService
-from config import MAX_POKEMON_ID
-from models.Pokemon import Pokemon  # Make sure this import works with your structure
+from services.move_service import MoveService
+from models.pokemon import Pokemon
+from models.move import Move
+from logic.comparisons import compare_pokemon, compare_moves
 
 
 class Game:
@@ -12,34 +15,28 @@ class Game:
         self.player_name: str = player_name
         self.secret_pokemon: Optional[Pokemon] = self.get_daily_random_pokemon()
         self.current_pokemon: Optional[Pokemon] = None
+        self.secret_move: Optional[Move] = self.get_daily_random_move()
+
 
     def guess_pokemon(self, pokemon_id_or_name: str) -> Optional[List[str]]:
         try:
             self.current_pokemon = PokemonService.fetch_pokemon(pokemon_id_or_name)
-            return self._compare_pokemon(self.current_pokemon, self.secret_pokemon)
+            return compare_pokemon(self.current_pokemon, self.secret_pokemon)
         except Exception as e:
             print(f"Error fetching Pokémon data: {e}")
             return None
 
-    @staticmethod
-    def _compare_value(val1: int, val2: int) -> str:
-        if val1 == val2:
-            return "Match!"
-        return "Higher" if val1 > val2 else "Lower"
-
-    def _compare_pokemon(self, pokemon1: Pokemon, pokemon2: Pokemon) -> List[str]:
-        results: List[str] = []
-        # Name comparison
-        if pokemon1.name == pokemon2.name:
-            results.append("Name: Match!")
-        else:
-            results.append(f"Name: {pokemon1.name} vs {pokemon2.name}")
-
-        # Height and Weight comparison using helper
-        results.append(f"Height: {self._compare_value(pokemon1.height, pokemon2.height)}")
-        results.append(f"Weight: {self._compare_value(pokemon1.weight, pokemon2.weight)}")
-
-        return results
+    def guess_move(self, move_id_or_name: str, secret_move: Move) -> Optional[List[str]]:
+        """
+        Compares a guessed move to a secret move and returns a list of comparison results.
+        """
+        try:
+            move_name = move_id_or_name.split(" ")
+            guessed_move = MoveService.fetch_move('-'.join(move_name))
+            return compare_moves(guessed_move, secret_move)
+        except Exception as e:
+            print(f"Error fetching Move data: {e}")
+            return None
 
     @staticmethod
     def get_daily_random_pokemon() -> Pokemon:
@@ -47,3 +44,10 @@ class Game:
         random.seed(today)
         pokemon_id = random.randint(1, MAX_POKEMON_ID)
         return PokemonService.fetch_pokemon(pokemon_id)
+    
+    @staticmethod
+    def get_daily_random_move() -> Move:
+        today = date.today().strftime("%Y%m%d")
+        random.seed(today)
+        move_id = random.randint(1, MAX_MOVE_ID)
+        return MoveService.fetch_move(move_id)

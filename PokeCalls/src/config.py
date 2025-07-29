@@ -66,6 +66,7 @@ LANGUAGES_ENDPOINT = f"{POKEAPI_BASE_URL}language/"
 
 # Max Pokemon ID
 MAX_POKEMON_ID = 1025
+MAX_MOVE_ID = 921  # As of July 2025, PokeAPI has 921 moves
 
 # --- Example Usage in a Wrapper (Illustrative) ---
 # import requests

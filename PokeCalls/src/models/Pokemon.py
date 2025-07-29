@@ -3,7 +3,7 @@
 
 from typing import List, Optional, Set
 from types import SimpleNamespace
-from .PokemonMove import PokemonMove
+from .pokemon_move import PokemonMove
 
 class PokemonAbility:
     def __init__(self, ability: dict, is_hidden: bool, slot: int):
