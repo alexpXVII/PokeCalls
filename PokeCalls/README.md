@@ -11,6 +11,11 @@ PokeCalls is a Python library that simplifies interaction with the [PokeAPI](htt
 - Modular and extensible codebase
 - Colorized CLI feedback for guesses
 
+## Upcoming Features
+
+- **Containerization with Docker**: Easily run and deploy the app in any environment using Docker containers.
+- **Frontend with React**: A modern web interface for interacting with the game
+
 ## Installation
 
 Clone the repository and install dependencies:
