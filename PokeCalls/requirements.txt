@@ -1,2 +1,7 @@
+# Application Dependencies
 requests==2.31.0
+Django==4.2.15
+
+# Development & Testing Dependencies
 pytest>=8.2.0
+pytest-django==4.8.0
