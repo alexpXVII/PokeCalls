@@ -1,12 +1,7 @@
 import json
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
-from logic.game import Game
-
-# It's good practice to instantiate the game once if possible, 
-# but since it's daily, instantiating per request is fine.
-# A player name is required, so we can use a generic one.
-GAME_INSTANCE = Game(player_name="api_user")
+from logic.game import GAME_INSTANCE
 
 @csrf_exempt # Use csrf_exempt for simplicity, but use proper CSRF for production
 def guess_pokemon(request):

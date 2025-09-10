@@ -51,3 +51,7 @@ class Game:
         random.seed(today)
         move_id = random.randint(1, MAX_MOVE_ID)
         return MoveService.fetch_move(move_id)
+
+# Create a single, shared instance of the Game.
+# Your views.py will import and use this instance.
+GAME_INSTANCE = Game()
